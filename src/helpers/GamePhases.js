@@ -1,0 +1,10 @@
+const GamePhases = {
+    UNDEFINED: 0,
+    WAITING_FOR_FIRST_CLICK: 1,
+    GENERATING_LEVEL: 2,
+    FINDING_THE_WAY: 3,
+    WAITING_POPUP_RESPONSE: 4,
+    WAITING_SIGN_IN_RESPONSE: 5
+};
+
+export default GamePhases;

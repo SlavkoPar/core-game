@@ -1,0 +1,125 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
+}
+
+
+.App-intro {
+  font-size: large;
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.App-header {
+  background-color: #38A899;
+  height: 100px;
+  padding: 3px;
+  color: white;
+}
+
+.App-title {
+  font-size: 1.2em;
+  margin:3px;
+}
+
+/* 
+ *  Core Game
+ */  
+
+.board {
+  margin: 0 auto;
+  width: 90vw;
+  max-width: 82vh;
+  height: 90vw;
+  max-height: 82vh;
+  font-size: 1rem;
+
+  border-right:1px solid silver;
+  border-bottom:1px solid silver;
+}
+
+.board-row {
+  display: flex;
+}
+
+.box {
+  background: '#00000000'; /* 'transparent' */
+  margin: 0px;
+  color: white;
+  font-weight: bold;
+  flex: 1 0 auto;
+  position: relative;
+  border-left: 1px solid silver;
+  border-top: 1px solid silver;
+}
+
+.box:after {
+  content: "";
+  float:left;
+  display: block;
+  padding-top: 100%;
+}
+
+.box .inner {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+
+.game {
+  ppposition: absolute;      /* for popup */
+  text-align: center; 
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.game-info {
+  margin-left: 20px;
+}
+
+ul {
+  list-style: none;
+}
+
+
+/* unvisited link */
+a:link {
+  color: navy;
+  text-decoration: none;
+}
+
+/* visited link */
+a:visited {
+  color: green;
+}
+
+/* mouse over link */
+a:hover {
+  color: blue;
+}
+
+/* selected link */
+a:active {
+  color: blue;
+}
+
+
+
+.App-header  span {
+  margin-right:20px;
+}
