@@ -1,6 +1,6 @@
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
-[Try it](https://slavkopar.github.io/coregame/)
+[Try it](https://slavkopar.github.io/core-game/)
 
 
 The Game Rules:
