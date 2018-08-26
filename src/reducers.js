@@ -68,23 +68,10 @@ const reducers = createReducer({
       const { table } = s;
       table[i*10+j].state = BoxStates.CLICKED;
       if (ret.res === ClickResults.COMPLETED_LEVEL) {
-        alert('Completed, next level will have one clickable box more');
-        clearTheBoard(table);
-        s.level++;
-
-        // fix global mapPlayers
-        const player = mapPlayers.get(s.currentPlayerId);
-        mapPlayers.set(s.currentPlayerId, { ...player, level: s.level });
-        s.gamePhase = GamePhases.WAITING_FOR_FIRST_CLICK;
-
-        // fix arrar: store.players
-        s.players = [];
-        mapPlayers.forEach((v, k) => {
-          s.players.push(Object.assign({}, { id: k, level: v.level }));
-        });
-
-        // save storage
-        saveStorage(s);
+        //alert('Completed, next level will have one clickable box more');
+        s.popoverOpen = true;
+        s.gamePhase = GamePhases.WAITING_POPUP_RESPONSE;
+        return s;
       }
       else {
         // console.log('Box.marked', Box.marked);
@@ -128,6 +115,44 @@ const reducers = createReducer({
     const s = cloneState(state);
     const { table } = s;
     clearTheBoard(table);
+    return s;
+  },
+
+  /*
+   *  clear the board
+   */
+  [Actions.togglePopover]: (state) => {
+    const s = cloneState(state);
+    s.popoverOpen = !s.popoverOpen;
+    return s;
+  },
+
+  /*
+   *  on Popover
+   */
+  [Actions.onPopover]: (state, YesNo) => {
+    const s = cloneState(state);
+    const { table } = s;
+    if (YesNo === 'Yes') {
+      s.level++;
+
+      // fix global mapPlayers
+      const player = mapPlayers.get(s.currentPlayerId);
+      mapPlayers.set(s.currentPlayerId, { ...player, level: s.level });
+      s.gamePhase = GamePhases.WAITING_FOR_FIRST_CLICK;
+
+      // fix arrar: store.players
+      s.players = [];
+      mapPlayers.forEach((v, k) => {
+        s.players.push(Object.assign({}, { id: k, level: v.level }));
+      });
+
+      // save storage
+      saveStorage(s);
+    }
+    s.popoverOpen = false;
+    clearTheBoard(table);
+    s.gamePhase = GamePhases.WAITING_FOR_FIRST_CLICK;
     return s;
   }
 

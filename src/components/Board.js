@@ -1,8 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import BoxComponent from './BoxComponent';
+import PopoverPlayNextLevel from './PopoverPlayNextLevel';
 
-const Board = ({ table, gamePhase, onClick }) => {
+
+const Board = ({ table, gamePhase, onClick, popoverOpen, togglePopover, onPopoverYes, onPopoverNo }) => {
     const renderRow = (row, i) => {
         const columns = row.map((box, j) => (
             <BoxComponent
@@ -33,6 +35,13 @@ const Board = ({ table, gamePhase, onClick }) => {
     return (
         <div className="board">
             {rows}
+
+            <PopoverPlayNextLevel
+                popoverOpen={popoverOpen}
+                toggle={togglePopover}
+                onYes={onPopoverYes}
+                onNo={onPopoverNo}
+            />
         </div>
     );
 };
@@ -47,7 +56,11 @@ Board.propTypes = {
     ).isRequired,
 
     gamePhase: PropTypes.number.isRequired,
-    onClick: PropTypes.func.isRequired
+    onClick: PropTypes.func.isRequired,
+    popoverOpen: PropTypes.bool.isRequired,
+    togglePopover: PropTypes.func.isRequired,
+    onPopoverYes: PropTypes.func.isRequired,
+    onPopoverNo: PropTypes.func.isRequired
 };
 
 export default Board;

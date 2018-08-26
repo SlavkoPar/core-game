@@ -20,6 +20,7 @@ function handleClick(i, j, gamePhase, dispatch) {
       break;
 
     case GamePhases.WAITING_POPUP_RESPONSE:
+      dispatch(Actions.onPopover('No'));
       break;
 
     case GamePhases.WAITING_SIGN_IN_RESPONSE:
@@ -33,11 +34,15 @@ function handleClick(i, j, gamePhase, dispatch) {
 
 const mapStateToProps = state => ({
   table: state.table,
-  gamePhase: state.gamePhase // eabling usage of state-property inside of mapDispatchToProps
+  gamePhase: state.gamePhase, // enabling usage of state-property inside of mapDispatchToProps
+  popoverOpen: state.popoverOpen
 });
 
 const mapDispatchToProps = dispatch => ({
-  onClick: (i, j, gamePhase) => handleClick(i, j, gamePhase, dispatch)
+  onClick: (i, j, gamePhase) => handleClick(i, j, gamePhase, dispatch),
+  togglePopover: () => dispatch(Actions.togglePopover()),
+  onPopoverYes: () => dispatch(Actions.onPopover('Yes')),
+  onPopoverNo: () => dispatch(Actions.onPopover('No'))
 });
 
 export default connect(

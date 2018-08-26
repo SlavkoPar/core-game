@@ -6,13 +6,13 @@ const initialLevel = 3;
 const COREGAME = 'COREGAME';
 
 export const mapPlayers = new Map([
-    ['0', { id: '0', name: 'Anonymous', level: initialLevel, password: '' }],
-    ['1', { id: '1', name: 'Houdini', level: 77, password: '' }],
-    ['2', { id: '2', name: 'Lang', level: 21, password: '' }],
-    ['3', { id: '3', name: 'Slavko', level: 5, password: '' }],
-    ['4', { id: '4', name: 'Deep Blue', level: 72, password: '' }],
-    ['5', { id: '5', name: 'Mikhail', level: 11, password: '' }],
-    ['6', { id: '6', name: 'Leela', level: 80, password: '' }]
+    ['1', { id: '1', name: 'Anonymous', level: initialLevel, password: '' }],
+    ['2', { id: '2', name: 'Houdini', level: 77, password: '' }],
+    ['3', { id: '3', name: 'Lang', level: 21, password: '' }],
+    ['4', { id: '4', name: 'Slavko', level: 5, password: '' }],
+    ['5', { id: '5', name: 'Deep Blue', level: 72, password: '' }],
+    ['6', { id: '6', name: 'Mikhail', level: 11, password: '' }],
+    ['7', { id: '7', name: 'Leela', level: 80, password: '' }]
 ]);
 
 
@@ -34,7 +34,8 @@ const initialState = {
   players: [],
   currentPlayerId: '0',
   disperseMode: false,
-  disperseAway: true
+  disperseAway: true,
+  popoverOpen: false
 };
 
 
@@ -60,7 +61,7 @@ export const saveStorage = (s) => {
   }));
 };
 
-// localStorage.removeItem(COREGAME);
+localStorage.removeItem(COREGAME);
 
 if (isWebStorageSupported) {
   const sCoreGame = localStorage.getItem(COREGAME);

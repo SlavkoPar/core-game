@@ -26,7 +26,7 @@ const BoxComponent = ({ box, onClick }) => {
     }
 
     return (
-        <div className="box" onClick={() => onClick(i, j)} role="presentation">
+        <div className="box" onClick={() => onClick(i, j)} role="presentation" id="Popover1">
             <div className="inner" style={{ backgroundColor }}>
                 {/* {i}, {j} */}
             </div>
