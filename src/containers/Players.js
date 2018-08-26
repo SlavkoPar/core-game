@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 import { mapPlayers } from '../initialState';
 
 const Players = ({ dispatch, players }) => {
-  const playersSorted = [...players].sort((x, y) => y.level - x.level).map(p => (
-      <li key={p.id}>
-          {mapPlayers.get(p.id).name} ({p.level})
+  const playersSorted = [...players].sort((x, y) => y.level - x.level).map(player => (
+      <li key={player.id}>
+          {mapPlayers.get(player.id).name} ({player.level})
       </li>
   ));
 
@@ -40,7 +40,6 @@ Players.propTypes = {
   players: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
       level: PropTypes.number.isRequired
     }).isRequired
   ).isRequired
