@@ -35,7 +35,8 @@ const initialState = {
   currentPlayerId: '0',
   disperseMode: false,
   disperseAway: true,
-  popoverOpen: false
+  popoverOpen: false,
+  popoverCompleted: true
 };
 
 

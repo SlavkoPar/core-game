@@ -63,13 +63,13 @@ const reducers = createReducer({
     const { i, j } = payload;
 
     const ret = Box.getBox(i, j).handleClick();
-    if (ret.b) {
+    if (ret.done) {
       const s = cloneState(state);
       const { table } = s;
       table[i*10+j].state = BoxStates.CLICKED;
       if (ret.res === ClickResults.COMPLETED_LEVEL) {
-        //alert('Completed, next level will have one clickable box more');
         s.popoverOpen = true;
+        s.popoverCompleted = true;
         s.gamePhase = GamePhases.WAITING_POPUP_RESPONSE;
         return s;
       }
@@ -85,10 +85,9 @@ const reducers = createReducer({
 
     if (ret.res === ClickResults.FAILED_TO_COMPLETE_LEVEL) {
       const s = cloneState(state);
-      const { table } = s;
-      alert('Failed, play again !');
-      clearTheBoard(table);
-      s.gamePhase = GamePhases.WAITING_FOR_FIRST_CLICK;
+      s.popoverOpen = true;
+      s.popoverCompleted = false;
+      s.gamePhase = GamePhases.WAITING_POPUP_RESPONSE;
       return s;
     }
 
@@ -133,7 +132,7 @@ const reducers = createReducer({
   [Actions.onPopover]: (state, YesNo) => {
     const s = cloneState(state);
     const { table } = s;
-    if (YesNo === 'Yes') {
+    if (YesNo === 'Yes' && s.popoverCompleted) {
       s.level++;
 
       // fix global mapPlayers

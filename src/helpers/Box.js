@@ -129,17 +129,17 @@ export default class Box {
             // remove box from clickableBoxes
             clickableBoxes.splice(clickableBoxes.findIndex(m => m[0] === i && m[1] === j), 1);
             if (clickableBoxes.length === 0) {
-                return { b: true, res: ClickResults.COMPLETED_LEVEL };
+                return { done: true, res: ClickResults.COMPLETED_LEVEL };
             }
             else {
                 // we have more clickable boxes
                 if (!this.hasAtLeastOneClickableBox(i, j)) {
-                    return { b: false, res: ClickResults.FAILED_TO_COMPLETE_LEVEL };
+                    return { done: false, res: ClickResults.FAILED_TO_COMPLETE_LEVEL };
                 }
-                return { b: true, res: ClickResults.undefined };
+                return { done: true, res: ClickResults.undefined };
             }
         }
-        return { b: false, res: ClickResults.undefined };
+        return { done: false, res: ClickResults.undefined };
     }
 
     satisfyRulesOfMovements = (x, y) => {

@@ -35,7 +35,9 @@ function handleClick(i, j, gamePhase, dispatch) {
 const mapStateToProps = state => ({
   table: state.table,
   gamePhase: state.gamePhase, // enabling usage of state-property inside of mapDispatchToProps
-  popoverOpen: state.popoverOpen
+  popoverOpen: state.popoverOpen,
+  popoverCompleted: state.popoverCompleted
+
 });
 
 const mapDispatchToProps = dispatch => ({
