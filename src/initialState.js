@@ -76,18 +76,16 @@ if (isWebStorageSupported) {
     });
 
     initialState.level = storage.level;
-    initialState.players = [];
-    mapPlayers.forEach((v, k) => {
-      initialState.players.push(Object.assign({}, { id: k, level: v.level }));
-    });
 
     initialState.currentPlayerId = storage.currentPlayerId.toString();
     initialState.disperseMode = storage.disperseMode;
     initialState.disperseAway = storage.disperseAway;
   }
-  else {
-    saveStorage(initialState);
-  }
 }
+
+mapPlayers.forEach((v, k) => {
+  initialState.players.push(Object.assign({}, { id: k, level: v.level }));
+});
+
 
 export default initialState;
