@@ -62,7 +62,7 @@ export const saveStorage = (s) => {
   }));
 };
 
-localStorage.removeItem(COREGAME);
+// localStorage.removeItem(COREGAME);
 
 if (isWebStorageSupported) {
   const sCoreGame = localStorage.getItem(COREGAME);
