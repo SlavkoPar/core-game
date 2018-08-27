@@ -153,7 +153,56 @@ const reducers = createReducer({
     clearTheBoard(table);
     s.gamePhase = GamePhases.WAITING_FOR_FIRST_CLICK;
     return s;
+  },
+
+
+  /*
+   *  open SignIn dlg
+   */
+  [Actions.openSignInDlg]: (state) => {
+    const s = cloneState(state);
+    s.signInDlgOpen = true;
+    return s;
+  },
+
+  /*
+   *  onSignInDlgToggle
+   */
+  [Actions.onSignInDlgToggle]: (state) => {
+    const s = cloneState(state);
+    s.signInDlgOpen = !s.signInDlgOpen;
+    return s;
+  },
+
+  /*
+   *  onSignInDlgSave
+   */
+  [Actions.onSignInDlgSave]: (state) => {
+    const s = cloneState(state);
+    s.signInDlgOpen = false;
+    return s;
+  },
+
+  /*
+   *  onSignInDlgCancel
+   */
+  [Actions.onSignInDlgCancel]: (state) => {
+    const s = cloneState(state);
+    s.signInDlgOpen = false;
+    return s;
+  },
+
+  /*
+   *  onSignInDlgSubmit
+   */
+  [Actions.onSignInDlgSubmit]: (state) => {
+    const s = cloneState(state);
+    s.signInDlgOpen = false;
+    return s;
   }
+
+
+  
 
 }, initialState);
 

@@ -36,7 +36,8 @@ const initialState = {
   disperseMode: false,
   disperseAway: true,
   popoverOpen: false,
-  popoverCompleted: true
+  popoverCompleted: true,
+  signInDlgOpen: false
 };
 
 

@@ -1,35 +1,33 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import Actions from '../actions';
+import SignInDlg from '../components/SignInDlg';
 
-const GameStats = ({ dispatch, level }) => (
+const GameStats = ({ level, signInDlgOpen, onClick, toggle, onSubmit, onCancel }) => (
     <div>
-        {/* <form onSubmit={e => {
-          e.preventDefault()
-          if (!input.value.trim()) {
-            return
-          }
-          dispatch(addTodo(input.value))
-          input.value = ''
-        }}>
-          <input ref={node => input = node} />
-          <button type="submit">
-            Add Todo
-          </button>
-        </form> */}
-      Level: {level}
+        Level: {level}
+        <SignInDlg
+            signInDlgOpen={signInDlgOpen}
+            onClick={onClick}
+            toggle={toggle}
+            onSubmit={onSubmit}
+            onCancel={onCancel}
+        />
     </div>
 );
 
-function handleClick(dispatch) {
-}
 
 const mapStateToProps = state => ({
-  level: state.level
+  level: state.level,
+  signInDlgOpen: state.signInDlgOpen
 });
 
 const mapDispatchToProps = dispatch => ({
-  onClick: () => handleClick(dispatch)
+  onClick: () => dispatch(Actions.openSignInDlg()),
+  toggle: () => dispatch(Actions.onSignInDlgToggle()),
+  onSubmit: () => dispatch(Actions.onSignInDlgSubmit()),
+  onCancel: () => dispatch(Actions.onSignInDlgCancel())
 });
 
 export default connect(
@@ -38,5 +36,10 @@ export default connect(
 )(GameStats);
 
 GameStats.propTypes = {
-  level: PropTypes.number.isRequired
+  level: PropTypes.number.isRequired,
+  signInDlgOpen: PropTypes.bool.isRequired,
+  onClick: PropTypes.func.isRequired,
+  toggle: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+  onCancel: PropTypes.func.isRequired
 };

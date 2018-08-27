@@ -4,7 +4,9 @@ import BoxComponent from './BoxComponent';
 import PopoverPlayNextLevel from './PopoverPlayNextLevel';
 
 
-const Board = ({ table, gamePhase, onClick, popoverOpen, popoverCompleted, togglePopover, onPopoverYes, onPopoverNo }) => {
+const Board = ({ table, gamePhase, onClick,
+                 popoverOpen, popoverCompleted, togglePopover, onPopoverYes, onPopoverNo
+                }) => {
     const renderRow = (row, i) => {
         const columns = row.map((box, j) => (
             <BoxComponent
@@ -34,6 +36,7 @@ const Board = ({ table, gamePhase, onClick, popoverOpen, popoverCompleted, toggl
 
     return (
         <div className="board">
+
             {rows}
 
             <PopoverPlayNextLevel
@@ -43,6 +46,7 @@ const Board = ({ table, gamePhase, onClick, popoverOpen, popoverCompleted, toggl
                 onYes={onPopoverYes}
                 onNo={onPopoverNo}
             />
+
         </div>
     );
 };
