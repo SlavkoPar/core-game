@@ -157,13 +157,7 @@ const reducers = createReducer({
 
   // ---------------------------------------------------------------------------
   // SignIn dlg
-  // ---------------------------------------------------------------------------
-
-  [Actions.openSignInDlg]: (state) => {
-    const s = cloneState(state);
-    s.signInDlgOpen = true;
-    return s;
-  },
+  //
 
   /*
    *  onSignInDlgToggle
@@ -171,24 +165,6 @@ const reducers = createReducer({
   [Actions.onSignInDlgToggle]: (state) => {
     const s = cloneState(state);
     s.signInDlgOpen = !s.signInDlgOpen;
-    return s;
-  },
-
-  /*
-   *  onSignInDlgSave
-   */
-  [Actions.onSignInDlgSave]: (state) => {
-    const s = cloneState(state);
-    s.signInDlgOpen = false;
-    return s;
-  },
-
-  /*
-   *  onSignInDlgCancel
-   */
-  [Actions.onSignInDlgCancel]: (state) => {
-    const s = cloneState(state);
-    s.signInDlgOpen = false;
     return s;
   },
 
@@ -221,13 +197,7 @@ const reducers = createReducer({
 
   // ---------------------------------------------------------------------------
   // LogIn dlg
-  // ---------------------------------------------------------------------------
-
-  [Actions.openLogInDlg]: (state) => {
-    const s = cloneState(state);
-    s.logInDlgOpen = true;
-    return s;
-  },
+  // 
 
   /*
    *  onLogInDlgToggle
@@ -235,24 +205,6 @@ const reducers = createReducer({
   [Actions.onLogInDlgToggle]: (state) => {
     const s = cloneState(state);
     s.logInDlgOpen = !s.logInDlgOpen;
-    return s;
-  },
-
-  /*
-   *  onLogInDlgSave
-   */
-  [Actions.onLogInDlgSave]: (state) => {
-    const s = cloneState(state);
-    s.logInDlgOpen = false;
-    return s;
-  },
-
-  /*
-   *  onLogInDlgCancel
-   */
-  [Actions.onLogInDlgCancel]: (state) => {
-    const s = cloneState(state);
-    s.logInDlgOpen = false;
     return s;
   },
 
@@ -278,7 +230,7 @@ const reducers = createReducer({
 
   // ------------------------------------------------------
   // onSignOut
-  // ------------------------------------------------------
+  //
   [Actions.onSignOut]: (state) => {
     const s = cloneState(state);
     s.currentPlayerId = '1'; // Anonymous

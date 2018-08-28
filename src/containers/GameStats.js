@@ -49,15 +49,11 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  onClickSignIn: () => dispatch(Actions.openSignInDlg()),
   toggleSignIn: () => dispatch(Actions.onSignInDlgToggle()),
   onSubmitSignIn: values => dispatch(Actions.onSignInDlgSubmit(values)),
-  onCancelSignIn: () => dispatch(Actions.onSignInDlgCancel()),
 
-  onClickLogIn: () => dispatch(Actions.openLogInDlg()),
   toggleLogIn: () => dispatch(Actions.onLogInDlgToggle()),
   onSubmitLogIn: values => dispatch(Actions.onLogInDlgSubmit(values)),
-  onCancelLogIn: () => dispatch(Actions.onLogInDlgCancel()),
 
   onSignOut: () => dispatch(Actions.onSignOut())
 });
@@ -73,16 +69,12 @@ GameStats.propTypes = {
   isAnonymous: PropTypes.bool.isRequired,
 
   signInDlgOpen: PropTypes.bool.isRequired,
-  onClickSignIn: PropTypes.func.isRequired,
   toggleSignIn: PropTypes.func.isRequired,
   onSubmitSignIn: PropTypes.func.isRequired,
-  onCancelSignIn: PropTypes.func.isRequired,
 
   logInDlgOpen: PropTypes.bool.isRequired,
-  onClickLogIn: PropTypes.func.isRequired,
   toggleLogIn: PropTypes.func.isRequired,
   onSubmitLogIn: PropTypes.func.isRequired,
-  onCancelLogIn: PropTypes.func.isRequired,
 
   onSignOut: PropTypes.func.isRequired
 };
