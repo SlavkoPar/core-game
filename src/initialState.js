@@ -3,7 +3,7 @@ import GamePhases from './helpers/GamePhases';
 
 export const initialLevel = 3;
 
-const COREGAME = 'COREGAME';
+const CORE_GAME = 'CORE_GAME';
 
 export const mapPlayers = new Map([
     ['1', { id: '1', name: 'Anonymous', level: initialLevel, password: '' }]
@@ -49,7 +49,7 @@ function isWebStorageSupported() {
 }
 
 export const saveStorage = (s) => {
-  localStorage.setItem(COREGAME, JSON.stringify({
+  localStorage.setItem(CORE_GAME, JSON.stringify({
     objPlayers: strMapToObj(mapPlayers),
     currentPlayerId: s.currentPlayerId,
     level: s.level,
@@ -58,10 +58,10 @@ export const saveStorage = (s) => {
   }));
 };
 
-// localStorage.removeItem(COREGAME);
+// localStorage.removeItem(CORE_GAME);
 
 if (isWebStorageSupported) {
-  const sCoreGame = localStorage.getItem(COREGAME);
+  const sCoreGame = localStorage.getItem(CORE_GAME);
   if (sCoreGame !== null) {
     console.log('localStorage:', sCoreGame);
     const storage = JSON.parse(sCoreGame);
