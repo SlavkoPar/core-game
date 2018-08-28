@@ -1,5 +1,5 @@
 import { createReducer } from 'redux-act';
-import initialState, { mapPlayers, saveStorage } from './initialState';
+import initialState, { mapPlayers, saveStorage, initialLevel } from './initialState';
 import Actions from './actions';
 import GamePhases from './helpers/GamePhases';
 import Box, { BoxStates, ClickResults } from './helpers/Box';
@@ -140,7 +140,7 @@ const reducers = createReducer({
       mapPlayers.set(s.currentPlayerId, { ...player, level: s.level });
       s.gamePhase = GamePhases.WAITING_FOR_FIRST_CLICK;
 
-      // fix arrar: store.players
+      // fix array: store.players
       s.players = [];
       mapPlayers.forEach((v, k) => {
         s.players.push(Object.assign({}, { id: k, level: v.level }));
@@ -155,10 +155,10 @@ const reducers = createReducer({
     return s;
   },
 
+  // ---------------------------------------------------------------------------
+  // SignIn dlg
+  // ---------------------------------------------------------------------------
 
-  /*
-   *  open SignIn dlg
-   */
   [Actions.openSignInDlg]: (state) => {
     const s = cloneState(state);
     s.signInDlgOpen = true;
@@ -195,14 +195,98 @@ const reducers = createReducer({
   /*
    *  onSignInDlgSubmit
    */
-  [Actions.onSignInDlgSubmit]: (state) => {
+  [Actions.onSignInDlgSubmit]: (state, values) => {
+    console.log(values);
+    const arr = [...mapPlayers.keys()].map(k => parseInt(k, 10));
+    const maxId = Math.max(...arr) + 1;
+    mapPlayers.set(maxId.toString(), {
+                    id: maxId.toString(),
+                    name: values.Username,
+                    level: initialLevel,
+                    password: values.Password });
+
     const s = cloneState(state);
+    s.currentPlayerId = maxId.toString();
+    s.level = initialLevel;
+    // fix array: store.players
+    s.players = [];
+    mapPlayers.forEach((v, k) => {
+      s.players.push(Object.assign({}, { id: k, level: v.level }));
+    });
     s.signInDlgOpen = false;
+    // save storage
+    saveStorage(s);
+    return s;
+  },
+
+  // ---------------------------------------------------------------------------
+  // LogIn dlg
+  // ---------------------------------------------------------------------------
+
+  [Actions.openLogInDlg]: (state) => {
+    const s = cloneState(state);
+    s.logInDlgOpen = true;
+    return s;
+  },
+
+  /*
+   *  onLogInDlgToggle
+   */
+  [Actions.onLogInDlgToggle]: (state) => {
+    const s = cloneState(state);
+    s.logInDlgOpen = !s.logInDlgOpen;
+    return s;
+  },
+
+  /*
+   *  onLogInDlgSave
+   */
+  [Actions.onLogInDlgSave]: (state) => {
+    const s = cloneState(state);
+    s.logInDlgOpen = false;
+    return s;
+  },
+
+  /*
+   *  onLogInDlgCancel
+   */
+  [Actions.onLogInDlgCancel]: (state) => {
+    const s = cloneState(state);
+    s.logInDlgOpen = false;
+    return s;
+  },
+
+  /*
+   *  onLogInDlgSubmit
+   */
+  [Actions.onLogInDlgSubmit]: (state, values) => {
+    let player;
+    mapPlayers.forEach((v) => {
+      if (v.name === values.Username) {
+        player = v;
+      }
+    });
+
+    const s = cloneState(state);
+    s.currentPlayerId = player.id;
+    s.level = player.level;
+    s.logInDlgOpen = false;
+    // save storage
+    saveStorage(s);
+    return s;
+  },
+
+  // ------------------------------------------------------
+  // onSignOut
+  // ------------------------------------------------------
+  [Actions.onSignOut]: (state) => {
+    const s = cloneState(state);
+    s.currentPlayerId = '1'; // Anonymous
+    s.level = mapPlayers.get('1').level;
+    // save storage
+    saveStorage(s);
     return s;
   }
-
-
-  
 
 }, initialState);
 

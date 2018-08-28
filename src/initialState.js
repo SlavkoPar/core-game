@@ -1,18 +1,12 @@
 import { BoxStates } from './helpers/Box';
 import GamePhases from './helpers/GamePhases';
 
-const initialLevel = 3;
+export const initialLevel = 3;
 
 const COREGAME = 'COREGAME';
 
 export const mapPlayers = new Map([
-    ['1', { id: '1', name: 'Anonymous', level: initialLevel, password: '' }],
-    ['2', { id: '2', name: 'Houdini', level: 77, password: '' }],
-    ['3', { id: '3', name: 'Lang', level: 21, password: '' }],
-    ['4', { id: '4', name: 'Slavko', level: 5, password: '' }],
-    ['5', { id: '5', name: 'Deep Blue', level: 72, password: '' }],
-    ['6', { id: '6', name: 'Mikhail', level: 11, password: '' }],
-    ['7', { id: '7', name: 'Leela', level: 80, password: '' }]
+    ['1', { id: '1', name: 'Anonymous', level: initialLevel, password: '' }]
 ]);
 
 
@@ -32,12 +26,13 @@ const initialState = {
   startPosition: [],
   level: initialLevel,
   players: [],
-  currentPlayerId: '0',
+  currentPlayerId: '1',
   disperseMode: false,
   disperseAway: true,
   popoverOpen: false,
   popoverCompleted: true,
-  signInDlgOpen: false
+  signInDlgOpen: false,
+  logInDlgOpen: false
 };
 
 
