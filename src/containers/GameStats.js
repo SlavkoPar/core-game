@@ -8,13 +8,13 @@ import LogInDlg from '../components/LogInDlg';
 import SignOutDlg from '../components/SignOutDlg';
 
 const GameStats = ({ level, currentPlayerId, isAnonymous,
-  signInDlgOpen, onClickSignIn, toggleSignIn, onSubmitSignIn, onCancelSignIn, 
-  logInDlgOpen, onClickLogIn, toggleLogIn, onSubmitLogIn, onCancelLogIn, 
+  signInDlgOpen, onClickSignIn, toggleSignIn, onSubmitSignIn, onCancelSignIn,
+  logInDlgOpen, onClickLogIn, toggleLogIn, onSubmitLogIn, onCancelLogIn,
   onSignOut }) => (
-      <div>
-          User: {mapPlayers.get(currentPlayerId).name}
+      <div className="game-stats">
+          <label>User:</label> {mapPlayers.get(currentPlayerId).name}
           {' '}
-          Level: {level}
+          <label>Level:</label> {level}
           {isAnonymous ? (
               <Fragment>
                   <SignInDlg
