@@ -118,7 +118,7 @@ const reducers = createReducer({
   },
 
   /*
-   *  clear the board
+   *  toggle Popover
    */
   [Actions.togglePopover]: (state) => {
     const s = cloneState(state);
@@ -192,12 +192,15 @@ const reducers = createReducer({
     s.signInDlgOpen = false;
     // save storage
     saveStorage(s);
+    const { table } = s;
+    clearTheBoard(table);
+    s.gamePhase = GamePhases.WAITING_FOR_FIRST_CLICK;
     return s;
   },
 
   // ---------------------------------------------------------------------------
   // LogIn dlg
-  // 
+  //
 
   /*
    *  onLogInDlgToggle
@@ -225,6 +228,9 @@ const reducers = createReducer({
     s.logInDlgOpen = false;
     // save storage
     saveStorage(s);
+    const { table } = s;
+    clearTheBoard(table);
+    s.gamePhase = GamePhases.WAITING_FOR_FIRST_CLICK;
     return s;
   },
 
@@ -237,6 +243,9 @@ const reducers = createReducer({
     s.level = mapPlayers.get('1').level;
     // save storage
     saveStorage(s);
+    const { table } = s;
+    clearTheBoard(table);
+    s.gamePhase = GamePhases.WAITING_FOR_FIRST_CLICK;
     return s;
   }
 
